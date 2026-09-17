@@ -6,6 +6,7 @@
 
 template<class T>
 class Array{
+    
     private:
         T *_data;
         unsigned int _size;
@@ -15,8 +16,17 @@ class Array{
         Array(unsigned int n);
         Array(const Array &copy);
         Array& operator=(const Array &copy);
-        size_t size(T Array) const;
+        ~Array();
+        unsigned int size() const;
+        
+        T &operator[](unsigned int pos);
+        T const &operator[](unsigned int pos) const; 
+    
+    class OutOfBoundsException : public std::exception{
+        public:
+            virtual const char *what() const throw();
+    };
+};
 
-}
-
+#include "Array.tpp"
 #endif
